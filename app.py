@@ -102,25 +102,44 @@ st.markdown("""
 # =============================================================================
 @st.cache_data(ttl=3600, show_spinner=False)
 def fetch_csv_from_drive(url_or_id: str) -> pd.DataFrame:
-    """Resolve a Google Drive URL/ID and fetch as DataFrame.
-    Uses gdown to handle the virus-scan interstitial that Drive shows on larger
-    files. Falls back to direct HTTP fetch for non-Drive URLs.
-    """
+    """Resolve a Google Drive URL/ID and fetch as DataFrame."""
+
     is_drive = "drive.google.com" in url_or_id or "docs.google.com" in url_or_id
 
     if not is_drive:
-        # Treat as a plain HTTP(S) URL (raw GitHub, S3 public, etc.)
         return pd.read_csv(url_or_id)
 
     try:
         import gdown
     except ImportError:
-        raise RuntimeError("gdown is required for Drive URLs. Add 'gdown' to requirements.")
+        raise RuntimeError(
+            "gdown is required for Drive URLs. Add 'gdown' to requirements."
+        )
 
     import tempfile
+
     with tempfile.NamedTemporaryFile(suffix=".csv", delete=False) as tmp:
         out_path = tmp.name
-    gdown.download(url=url_or_id, output=out_path, quiet=True, fuzzy=True)
+
+    # Extract file ID manually
+    file_id = None
+
+    match = re.search(r"/d/([a-zA-Z0-9_-]+)", url_or_id)
+    if match:
+        file_id = match.group(1)
+
+    if not file_id:
+        match = re.search(r"id=([a-zA-Z0-9_-]+)", url_or_id)
+        if match:
+            file_id = match.group(1)
+
+    if not file_id:
+        raise ValueError("Could not extract Google Drive file ID.")
+
+    download_url = f"https://drive.google.com/uc?id={file_id}"
+
+    gdown.download(download_url, out_path, quiet=True)
+
     return pd.read_csv(out_path)
 
 
