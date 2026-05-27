@@ -228,7 +228,7 @@ def kpi_card(label: str, value, sub: str = "") -> str:
 st.markdown("""
 <div class="hero">
     <h1>💊 Prior Authorization Policy Extraction</h1>
-    <p>Structured PA criteria extracted from payer policies for plaque psoriasis. Powered by Gemini 2.5 Flash.</p>
+    <p>Structured PA criteria extracted from payer policies for plaque psoriasis. Powered by Gemini / LLama </p>
 </div>
 """, unsafe_allow_html=True)
 
