@@ -39,9 +39,15 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    /* Tighten default Streamlit padding */
-    .block-container { padding-top: 1.5rem; padding-bottom: 2rem; max-width: 1400px; }
-    header[data-testid="stHeader"] { background: transparent; }
+    .block-container {
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+        max-width: 1400px;
+    }
+
+    header[data-testid="stHeader"] {
+        background: transparent;
+    }
 
     /* Hero banner */
     .hero {
@@ -52,47 +58,72 @@ st.markdown("""
         margin-bottom: 1.5rem;
         box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
     }
-    .hero h1 { color: white; font-size: 2.1rem; margin: 0 0 0.4rem 0; font-weight: 700; }
-    .hero p  { color: rgba(255, 255, 255, 0.92); margin: 0; font-size: 1.05rem; }
+
+    .hero h1 {
+        color: white;
+        font-size: 2.1rem;
+        margin: 0 0 0.4rem 0;
+        font-weight: 700;
+    }
+
+    .hero p {
+        color: rgba(255, 255, 255, 0.92);
+        margin: 0;
+        font-size: 1.05rem;
+    }
 
     /* KPI cards */
     .kpi-card {
-        background: white;
-        border: 1px solid #e5e7eb;
+        background: var(--background-color);
+        border: 1px solid var(--secondary-background-color);
         border-radius: 14px;
         padding: 1.15rem 1.3rem;
         box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         height: 100%;
     }
-    .kpi-label  { color: #6b7280; font-size: 0.82rem; font-weight: 600;
-                  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.35rem; }
-    .kpi-value  { color: #111827; font-size: 2rem; font-weight: 700; line-height: 1.1; }
-    .kpi-sub    { color: #9ca3af; font-size: 0.78rem; margin-top: 0.25rem; }
 
-    /* Score pills */
-    .score-pill {
-        display: inline-block; padding: 3px 11px; border-radius: 999px;
-        font-weight: 600; font-size: 0.85em; color: white;
+    .kpi-label {
+        color: var(--text-color);
+        opacity: 0.7;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.35rem;
     }
-    .score-0   { background: #6b7280; }
-    .score-low { background: #dc2626; }
-    .score-mid { background: #f59e0b; }
-    .score-ok  { background: #10b981; }
-    .score-hi  { background: #2563eb; }
+
+    .kpi-value {
+        color: var(--text-color);
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .kpi-sub {
+        color: var(--text-color);
+        opacity: 0.6;
+        font-size: 0.78rem;
+        margin-top: 0.25rem;
+    }
 
     /* Section headers */
     h2.section-header {
-        color: #1f2937;
-        margin-top: 1.5rem !important; margin-bottom: 0.8rem !important;
-        font-size: 1.25rem; font-weight: 600;
-        border-left: 4px solid #4f46e5; padding-left: 0.7rem;
+        color: var(--text-color);
+        margin-top: 1.5rem !important;
+        margin-bottom: 0.8rem !important;
+        font-size: 1.25rem;
+        font-weight: 600;
+        border-left: 4px solid #4f46e5;
+        padding-left: 0.7rem;
     }
 
-    /* Hide default Streamlit footer */
-    footer { visibility: hidden; }
+    footer {
+        visibility: hidden;
+    }
 
-    /* Tab styling */
-    button[data-baseweb="tab"] { font-weight: 500; }
+    button[data-baseweb="tab"] {
+        font-weight: 500;
+    }
 </style>
 """, unsafe_allow_html=True)
 
