@@ -125,55 +125,6 @@ button[data-baseweb="tab"] {
     font-weight: 500;
 }
 
-/* =========================
-   TABLE STYLING
-========================= */
-
-[data-testid="stDataEditor"] {
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid rgba(128,128,128,0.15);
-}
-
-/* Header background */
-[data-testid="stDataEditor"] thead {
-    background-color: #4f46e5 !important;
-}
-
-/* Header cells */
-[data-testid="stDataEditor"] th {
-    background-color: #4f46e5 !important;
-    color: white !important;
-    font-weight: 700 !important;
-    font-size: 14px !important;
-    border-bottom: none !important;
-}
-
-/* Header text */
-[data-testid="stDataEditor"] th p {
-    color: white !important;
-    font-weight: 700 !important;
-}
-
-/* Table body */
-[data-testid="stDataEditor"] td {
-    border-color: rgba(128,128,128,0.08) !important;
-}
-
-/* Alternate rows */
-[data-testid="stDataEditor"] tr:nth-child(even) td {
-    background-color: rgba(120,120,120,0.03);
-}
-
-/* Hover rows */
-[data-testid="stDataEditor"] tr:hover td {
-    background-color: rgba(79,70,229,0.08) !important;
-}
-
-/* Access Score column bold */
-[data-testid="stDataEditor"] td:nth-child(10) {
-    font-weight: 700 !important;
-}
 </style>
 """, unsafe_allow_html=True)
 
