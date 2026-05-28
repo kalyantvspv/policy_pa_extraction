@@ -522,7 +522,8 @@ st.data_editor(
         "Access Score": st.column_config.NumberColumn(
     "Access Score",
     format="%d",
-       ),
+    width="small",
+)
     },
     hide_index=True,
 )
