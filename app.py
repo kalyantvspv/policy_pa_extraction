@@ -496,13 +496,10 @@ st.data_editor(
         "Reauthorization Required": st.column_config.TextColumn(
             "Reauth", width="small"
         ),
-        "Access Score": st.column_config.ProgressColumn(
-            "Access Score",
-            min_value=0,
-            max_value=100,
-            format="%d",
-            width="medium",
-        ),
+        "Access Score": st.column_config.NumberColumn(
+    "Access Score",
+    format="%d",
+       ),
     },
     hide_index=True,
 )
