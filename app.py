@@ -129,59 +129,28 @@ button[data-baseweb="tab"] {
    Dataframe / Table Styling
 ================================ */
 
-/* Main dataframe container */
-[data-testid="stDataFrame"] {
-    border: 1px solid rgba(128,128,128,0.25);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+/* Better table headers */
 
-/* Header row */
-[data-testid="stDataFrame"] thead tr th {
-    background-color: #4f46e5 !important;
+[data-testid="stDataEditor"] [role="columnheader"] {
+    background: #4f46e5 !important;
     color: white !important;
     font-weight: 700 !important;
-    border-bottom: 1px solid rgba(255,255,255,0.15) !important;
 }
 
 /* Header text */
-[data-testid="stDataFrame"] th div {
+[data-testid="stDataEditor"] [role="columnheader"] * {
     color: white !important;
 }
 
-/* Table cells */
-[data-testid="stDataFrame"] tbody tr td {
-    color: var(--text-color) !important;
-    border-bottom: 1px solid rgba(128,128,128,0.15) !important;
+/* Rows */
+[data-testid="stDataEditor"] [role="gridcell"] {
+    border-color: rgba(128,128,128,0.12) !important;
 }
 
-/* Alternate rows */
-[data-testid="stDataFrame"] tbody tr:nth-child(even) {
-    background-color: rgba(120,120,120,0.05);
+/* Hover */
+[data-testid="stDataEditor"] div[role="row"]:hover [role="gridcell"] {
+    background-color: rgba(79,70,229,0.08) !important;
 }
-
-/* Hover effect */
-[data-testid="stDataFrame"] tbody tr:hover {
-    background-color: rgba(79,70,229,0.12) !important;
-    transition: background-color 0.2s ease;
-}
-
-/* Toolbar */
-[data-testid="stDataFrameToolbar"] {
-    background-color: transparent !important;
-}
-
-/* Rounded scroll area */
-[data-testid="stDataFrameResizable"] {
-    border-radius: 12px;
-}
-
-/* Progress bars */
-[data-testid="stDataFrame"] div[role="progressbar"] {
-    border-radius: 999px;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -504,20 +473,35 @@ display_cols = [
     "Access Score",
 ]
 
-st.dataframe(
+st.data_editor(
     filt[display_cols],
     use_container_width=True,
     height=440,
+    disabled=True,
     column_config={
         "Filename": st.column_config.TextColumn("Filename", width="medium"),
         "Brand": st.column_config.TextColumn("Brand", width="small"),
-        "Number of Steps through Brands":  st.column_config.NumberColumn("Brand steps",  width="small"),
-        "Number of Steps through Generic": st.column_config.NumberColumn("Generic steps", width="small"),
-        "TB Test required":                st.column_config.TextColumn("TB test", width="small"),
-        "Initial Authorization Duration(in-months)": st.column_config.TextColumn("Init auth", width="small"),
-        "Reauthorization Required":        st.column_config.TextColumn("Reauth", width="small"),
+        "Number of Steps through Brands": st.column_config.NumberColumn(
+            "Brand steps", width="small"
+        ),
+        "Number of Steps through Generic": st.column_config.NumberColumn(
+            "Generic steps", width="small"
+        ),
+        "TB Test required": st.column_config.TextColumn(
+            "TB test", width="small"
+        ),
+        "Initial Authorization Duration(in-months)": st.column_config.TextColumn(
+            "Init auth", width="small"
+        ),
+        "Reauthorization Required": st.column_config.TextColumn(
+            "Reauth", width="small"
+        ),
         "Access Score": st.column_config.ProgressColumn(
-            "Access Score", min_value=0, max_value=100, format="%d", width="medium",
+            "Access Score",
+            min_value=0,
+            max_value=100,
+            format="%d",
+            width="medium",
         ),
     },
     hide_index=True,
