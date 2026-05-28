@@ -505,9 +505,17 @@ if len(filt):
             st.markdown(f"### {row['Brand']} in `{row['Filename']}`")
         with hdr_r:
             st.markdown(
-                f'<div style="text-align:right; padding-top:0.6rem;">'
-                f'<span class="score-pill" style="background:{score_color(score)}; font-size:1rem;">'
-                f'Access Score: {score}</span></div>',
+                f"""
+                <div style="text-align:right; padding-top:0.6rem;">
+                    <span style="
+                        font-size:1rem;
+                        font-weight:700;
+                        color: var(--text-color);
+                    ">
+                        Access Score: {score}
+                    </span>
+                </div>
+                """,
                 unsafe_allow_html=True,
             )
 
