@@ -473,38 +473,67 @@ display_cols = [
     "Access Score",
 ]
 
-st.data_editor(
-    filt[display_cols],
+styled_df = (
+    filt[display_cols]
+    .style
+    .set_properties(**{
+        "background-color": "#111827",
+        "color": "white",
+        "border-color": "#374151",
+    })
+    .set_table_styles([
+        {
+            "selector": "th",
+            "props": [
+                ("background-color", "#4f46e5"),
+                ("color", "white"),
+                ("font-weight", "bold"),
+                ("text-align", "center"),
+                ("border", "1px solid #6366f1"),
+                ("font-size", "14px"),
+            ],
+        },
+        {
+            "selector": "td",
+            "props": [
+                ("padding", "8px"),
+                ("border", "1px solid #374151"),
+            ],
+        },
+        {
+            "selector": "tr:nth-child(even)",
+            "props": [
+                ("background-color", "#1f2937"),
+            ],
+        },
+        {
+            "selector": "tr:nth-child(odd)",
+            "props": [
+                ("background-color", "#111827"),
+            ],
+        },
+        {
+            "selector": "tr:hover",
+            "props": [
+                ("background-color", "#312e81"),
+            ],
+        },
+    ])
+)
+
+st.dataframe(
+    styled_df,
     use_container_width=True,
     height=440,
-    disabled=True,
+    hide_index=True,
     column_config={
-        "Filename": st.column_config.TextColumn("Filename", width="medium"),
-        "Brand": st.column_config.TextColumn("Brand", width="small"),
-        "Number of Steps through Brands": st.column_config.NumberColumn(
-            "Brand steps", width="small"
-        ),
-        "Number of Steps through Generic": st.column_config.NumberColumn(
-            "Generic steps", width="small"
-        ),
-        "TB Test required": st.column_config.TextColumn(
-            "TB test", width="small"
-        ),
-        "Initial Authorization Duration(in-months)": st.column_config.TextColumn(
-            "Init auth", width="small"
-        ),
-        "Reauthorization Required": st.column_config.TextColumn(
-            "Reauth", width="small"
-        ),
         "Access Score": st.column_config.ProgressColumn(
             "Access Score",
             min_value=0,
             max_value=100,
             format="%d",
-            width="medium",
         ),
     },
-    hide_index=True,
 )
 
 
