@@ -121,9 +121,67 @@ st.markdown("""
         visibility: hidden;
     }
 
-    button[data-baseweb="tab"] {
-        font-weight: 500;
-    }
+button[data-baseweb="tab"] {
+    font-weight: 500;
+}
+
+/* ================================
+   Dataframe / Table Styling
+================================ */
+
+/* Main dataframe container */
+[data-testid="stDataFrame"] {
+    border: 1px solid rgba(128,128,128,0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Header row */
+[data-testid="stDataFrame"] thead tr th {
+    background-color: #4f46e5 !important;
+    color: white !important;
+    font-weight: 700 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+/* Header text */
+[data-testid="stDataFrame"] th div {
+    color: white !important;
+}
+
+/* Table cells */
+[data-testid="stDataFrame"] tbody tr td {
+    color: var(--text-color) !important;
+    border-bottom: 1px solid rgba(128,128,128,0.15) !important;
+}
+
+/* Alternate rows */
+[data-testid="stDataFrame"] tbody tr:nth-child(even) {
+    background-color: rgba(120,120,120,0.05);
+}
+
+/* Hover effect */
+[data-testid="stDataFrame"] tbody tr:hover {
+    background-color: rgba(79,70,229,0.12) !important;
+    transition: background-color 0.2s ease;
+}
+
+/* Toolbar */
+[data-testid="stDataFrameToolbar"] {
+    background-color: transparent !important;
+}
+
+/* Rounded scroll area */
+[data-testid="stDataFrameResizable"] {
+    border-radius: 12px;
+}
+
+/* Progress bars */
+[data-testid="stDataFrame"] div[role="progressbar"] {
+    border-radius: 999px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
